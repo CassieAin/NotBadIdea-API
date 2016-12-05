@@ -1,8 +1,5 @@
 package service;
 
-/**
- * Created by user on 01.12.16.
- */
 public class DBCredentials {
     public final static String ip="127.0.0.1";
     public final static String port="3306";

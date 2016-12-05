@@ -1,13 +1,14 @@
 package config;
 
-/**
- * Created by user on 30.11.16.
- */
-import dao.IdeaDAO;
+import dao.IdeasDAO;
+import service.DBConnection;
+import controllerUnderService.IdeasRequestToDB;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
-import service.DBConnection;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/")
@@ -19,11 +20,18 @@ public class MainController {
         return new DBConnection();
     }
 
-    @RequestMapping(value="/getIdea", method= RequestMethod.POST)
-    public IdeaDAO getIdea(RequestObject req) {
+    @RequestMapping(value = "/getIdeasListParam", method = RequestMethod.POST)
+    public IdeasDAO getIdeasList(RequestObject req, @RequestParam("id") int id, @RequestParam("title")  String title,
+                                 @RequestParam("author")  String author, @RequestParam("datetime")  String datetime,
+                                 @RequestParam("description")  String description, @RequestParam("photo")  String photo,
+                                 @RequestParam("likesAmount")  int likesAmount){
         req.getVar();
-        return new IdeaDAO();
+        return new IdeasDAO(id,title, author, datetime, description, photo,likesAmount);
     }
 
-
+    @RequestMapping(value = "/getIdeasList", method = RequestMethod.POST)
+    public IdeasDAO getIdeasList(RequestObject req){
+        req.getVar();
+        return new IdeasDAO();
+    }
 }
