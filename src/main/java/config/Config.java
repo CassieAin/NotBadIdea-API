@@ -1,11 +1,13 @@
 package config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-/**
- * Created by user on 30.11.16.
- */
+import service.DBCredentials;
 @Configuration
 public class Config {
 
+    @Bean
+    public DBCredentials dbCredentials() {
+        return new DBCredentials();
+    }
 }
