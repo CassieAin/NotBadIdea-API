@@ -1,11 +1,15 @@
 package service;
 
+import controllerUnderService.IdeasRequestToDB;
+import dao.IdeasDAO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nikolia on 29.11.2016.
@@ -111,6 +115,12 @@ public class AccessToDBTest {
         assertEquals(true,CloseConnectionValue);
     }
 
+    @Test
+    public void TestSelection()
+    {
+        ArrayList<IdeasDAO> obj = new IdeasRequestToDB().getIdeasList();
+        assertEquals(obj.get(0).getId(), 12);
+    }
 
 }
 

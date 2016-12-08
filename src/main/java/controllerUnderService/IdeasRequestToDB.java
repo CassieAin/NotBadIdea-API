@@ -18,17 +18,17 @@ public class IdeasRequestToDB {
         dbConnection = new DBConnection();
         dbConnection.OpenConnection();
         try {
-            String query = "SELECT 	 `ideas`.`ideaPK`," +
-                    "            `ideas`.`title`," +
-                    "            `ideas`.`description`," +
-                    "            `ideas`.`likes`," +
-                    "            `users`.`name`," +
-                    "            `users`.`surname`," +
-                    "            `ideas`.`time`," +
-                    "            `ideas`.`photo`" +
-                    "FROM 		`ideaservice`.`ideas`" +
-                    "            JOIN `ideaservice`.`users` ON userFK=usPK" +
-                    "            ORDER BY 	`ideas`.`time` DESC;";
+            String query =  "SELECT 	 `ideas`.`ideaPK`," +
+                            "            `ideas`.`title`," +
+                            "            `ideas`.`description`," +
+                            "            `ideas`.`likes`," +
+                            "            `users`.`name`," +
+                            "            `users`.`surname`," +
+                            "            `ideas`.`time`," +
+                            "            `ideas`.`photo`" +
+                            "FROM 		`ideaservice`.`ideas`" +
+                            "            JOIN `ideaservice`.`users` ON userFK=usPK" +
+                            " ORDER BY  `ideas`.`time` DESC;";
             PreparedStatement ps = null;
             ps = dbConnection.getConnection().prepareStatement(query);
             ResultSet rs = null;
