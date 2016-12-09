@@ -1,7 +1,7 @@
 package service;
 
 import controllerUnderService.IdeasRequestToDB;
-import dao.IdeasDAO;
+import dao.IdeaDAO;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.sql.ResultSet;
@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Nikolia on 29.11.2016.
@@ -43,7 +42,7 @@ public class AccessToDBTest {
         try {
             Statement st = dbConnection.getConnection().createStatement();
             st.execute( " INSERT INTO `ideaservice`.`status` (`status`)" +
-                    " VALUES                             ('Not Ready');");
+                    " VALUES                             ('Readied');");
         }
         catch (SQLException e) {
             assertEquals("Fails if here, either pass", e.getMessage());
@@ -106,7 +105,7 @@ public class AccessToDBTest {
         try {
             Statement st = dbConnection.getConnection().createStatement();
             st.execute( " DELETE FROM   `ideaservice`.`status`" +
-                    " WHERE          `status`='Ready';");
+                    " WHERE          `status`='Readied';");
         }
         catch (SQLException e) {
             assertEquals("Fails if here, either pass", e.getMessage());
@@ -118,8 +117,14 @@ public class AccessToDBTest {
     @Test
     public void TestSelection()
     {
-        ArrayList<IdeasDAO> obj = new IdeasRequestToDB().getIdeasList();
+        ArrayList<IdeaDAO> obj = new IdeasRequestToDB().getIdeasList();
         assertEquals(obj.get(0).getId(), 12);
+    }
+
+    @Test
+    public void TestInsertPost()
+    {
+        new IdeasRequestToDB().InsertData("John", "Smith", "sfgh", "des", 3);
     }
 
 }
