@@ -118,14 +118,25 @@ public class AccessToDBTest {
     public void TestSelection()
     {
         ArrayList<IdeaDAO> obj = new IdeasRequestToDB().getIdeasList();
-        assertEquals(obj.get(0).getId(), 12);
+        assertEquals(obj.get(0).getId(), 9);
     }
 
     @Test
     public void TestInsertPost()
     {
-        new IdeasRequestToDB().InsertData("John", "Smith", "sfgh", "des", 3);
+        IdeasRequestToDB objIdeas = new IdeasRequestToDB();
+        IdeaDAO idea = new IdeaDAO(9,"Lora","ah","2010-01-01 00:00:00","Text here","Link here", 0, "IT", "false");
+        boolean check = objIdeas.InsertData(idea);
+        assertEquals(true,check);
     }
 
+    @Test
+    public void Test()
+    {
+        IdeasRequestToDB objIdeas = new IdeasRequestToDB();
+        int x = objIdeas.SelectUserIDByLogin("ah");
+
+        assertEquals(1,x);
+    }
 }
 

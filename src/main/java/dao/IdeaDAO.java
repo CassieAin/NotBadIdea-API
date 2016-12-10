@@ -13,13 +13,14 @@ public class IdeaDAO {
     String datetime;
     String description;
     String photo;
+    String category;
     int likesAmount;
-
+    String isLiked;
     public IdeaDAO(){
 
     }
 
-    public IdeaDAO(int id, String title, String author, String datetime, String description, String photo, int likesAmount)
+    public IdeaDAO(int id, String title, String author, String datetime, String description, String photo, int likesAmount, String category, String isLiked)
     {
         this.id=id;
         this.title = title;
@@ -28,6 +29,8 @@ public class IdeaDAO {
         this.description = description;
         this.photo = photo;
         this.likesAmount = likesAmount;
+        this.category = category;
+        this.isLiked = isLiked;
     }
 
     public int getId()
@@ -74,4 +77,13 @@ public class IdeaDAO {
         return photo;
     }
 
+    public String getCategory()
+    {
+        return category;
+    }
+
+    public String getIsLiked()
+    {
+        return  isLiked;
+    }
 }
