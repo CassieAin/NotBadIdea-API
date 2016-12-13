@@ -1,8 +1,7 @@
 package config;
 
-import dao.IdeaDAO;
+import dao.*;
 import controllerUnderService.IdeasRequestToDB;
-import dao.IdeasListDAO;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -45,10 +44,23 @@ public class MainController {
     @RequestMapping(value = "/postIdea", method = RequestMethod.POST)
     public void postIdea(@RequestBody IdeaDAO idea) {
         /* ДАТУ И ВРЕМЯ НЕ ДОБАВЛЯЕТ (СКОРЕЕ ВСЕГО, НЕ ДЕСЕРИАЛИЗИРУЕТ)!
-        ЮНИТ ТЕСТЫ ПРОХОДИТ, ВСЁ ДОБАВЛЯЕТ ЧЕРЕЗ ТЕСТЫ, НО НЕ ЧЕРЕЗ ПОСТМЭН */
+        ЮНИТ ТЕСТЫ ПРОХОДИТ, ВСЁ ДОБАВЛЯЕТ git config ЧЕРЕЗ ТЕСТЫ, НО НЕ ЧЕРЕЗ ПОСТМЭН */
         IdeasRequestToDB objIdeas = new IdeasRequestToDB();
         objIdeas.InsertData(idea);
     }
 
+    @RequestMapping(value = "/registerUser",method = RequestMethod.POST)
+    public void registerUser(@RequestBody Authorization auth){
+        /*
+        UsersRequestToDB users = new UsersRequestToDB();
+        users.someMethod(auth);*/
     }
+
+    @RequestMapping(value = "/loginUser", method = RequestMethod.GET)
+    public LoginResponseObj getIdea(@RequestParam ("login") String login,@RequestParam ("password") String password) {
+        /*UsersRequestToDB users = new UsersRequestToDB();
+        return users.getSomeResponse(login,password);*/
+        return new LoginResponseObj();
+    }
+}
 
