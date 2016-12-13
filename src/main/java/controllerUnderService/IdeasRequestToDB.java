@@ -1,6 +1,9 @@
 package controllerUnderService;
 
 import dao.IdeaDAO;
+import dao.LoginRequest;
+import dao.LoginResponseObj;
+import dao.RegisterRequest;
 import service.DBConnection;
 
 import java.sql.PreparedStatement;
@@ -19,6 +22,8 @@ import java.util.ArrayList;
  * getIsLikedByID - check, if user likes idea
  * SelectUserIDByLogin - get id of user by login
  * InsertData - inserts new posts
+ * ReturnIDByLogin - login function
+ * Registration - do registration
  * TODO: add comments selecting
  *
  */
@@ -352,6 +357,65 @@ public class IdeasRequestToDB {
             psinsertquery.setString(5, idea.getDateTime());
             psinsertquery.setString(6, idea.getPhoto());
             psinsertquery.setInt(7, getCategoryID(idea.getCategory()));
+            psinsertquery.executeUpdate();
+            psinsertquery.close();
+            return true;
+        }
+        catch (SQLException e) {
+            dbConnection.CloseConnection();
+            return false;
+        }
+    }
+
+    public LoginResponseObj ReturnIDByLogin(LoginRequest obj)
+    {
+        DBConnection dbConnection;
+        dbConnection = new DBConnection();
+        dbConnection.OpenConnection();
+        try
+        {
+            String selectusersquery =   "SELECT     `users`.`usPK`, " +
+                                        "FROM       `ideaservice`.`users` " +
+                                        "WHERE      `users`.`login` = '"+obj.getLogin()+"' " +
+                                        "            AND `users`.`password` = '"+obj.getPassword()+"';";
+            PreparedStatement psquery = null;
+            psquery = dbConnection.getConnection().prepareStatement(selectusersquery);
+            psquery.setString(1, obj.getLogin());
+            psquery.setString(2, obj.getPassword());
+            ResultSet rsuser = null;
+            rsuser = psquery.executeQuery();
+            LoginResponseObj loginresponseobj;
+            loginresponseobj =  new LoginResponseObj(-1);
+            if (rsuser != null)
+                if(rsuser.next())
+                    loginresponseobj = new LoginResponseObj(rsuser.getInt("usPK"));
+            return loginresponseobj;
+        }
+        catch (SQLException e) {
+            dbConnection.CloseConnection();
+            return new LoginResponseObj(-1);
+        }
+    }
+
+    public boolean Registration(RegisterRequest obj)
+    {
+        DBConnection dbConnection;
+        dbConnection = new DBConnection();
+        dbConnection.OpenConnection();
+        try
+        {
+            String insertquery =    "INSERT INTO `ideaservice`.`users`" +
+                                    "(`login`, `email`, `password`, `name`, `surname`)" +
+                                    "VALUES" +
+                                    "(?, ?, ?, ?, ?);";
+            // Insert query
+            PreparedStatement psinsertquery = null;
+            psinsertquery = dbConnection.getConnection().prepareStatement(insertquery);
+            psinsertquery.setString(1, obj.getLogin());
+            psinsertquery.setString(2, obj.getEmail());
+            psinsertquery.setString(3, obj.getPassword());
+            psinsertquery.setString(4, obj.getName());
+            psinsertquery.setString(5, obj.getSurname());
             psinsertquery.executeUpdate();
             psinsertquery.close();
             return true;

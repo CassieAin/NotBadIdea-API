@@ -2,6 +2,7 @@ package service;
 
 import controllerUnderService.IdeasRequestToDB;
 import dao.IdeaDAO;
+import dao.LoginRequest;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import java.sql.ResultSet;
@@ -135,6 +136,16 @@ public class AccessToDBTest {
     {
         IdeasRequestToDB objIdeas = new IdeasRequestToDB();
         int x = objIdeas.SelectUserIDByLogin("ah");
+
+        assertEquals(1,x);
+    }
+
+    @Test
+    public void LoginTest()
+    {
+        IdeasRequestToDB objIdeas = new IdeasRequestToDB();
+        LoginRequest obj = new LoginRequest("ah", "ahouse");
+        int x = objIdeas.ReturnIDByLogin(obj).getUserId();
 
         assertEquals(1,x);
     }

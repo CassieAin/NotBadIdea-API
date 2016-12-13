@@ -45,22 +45,27 @@ public class MainController {
     public void postIdea(@RequestBody IdeaDAO idea) {
         /* ДАТУ И ВРЕМЯ НЕ ДОБАВЛЯЕТ (СКОРЕЕ ВСЕГО, НЕ ДЕСЕРИАЛИЗИРУЕТ)!
         ЮНИТ ТЕСТЫ ПРОХОДИТ, ВСЁ ДОБАВЛЯЕТ git config ЧЕРЕЗ ТЕСТЫ, НО НЕ ЧЕРЕЗ ПОСТМЭН */
+        // Come on, fix it please!
         IdeasRequestToDB objIdeas = new IdeasRequestToDB();
         objIdeas.InsertData(idea);
     }
 
+
+    // NIKOLIA 13/12/2016: STRING, BECAUSE WE NEED TO SAY, IF IT REGISTERED
     @RequestMapping(value = "/registerUser",method = RequestMethod.POST)
-    public void registerUser(@RequestBody Authorization auth){
-        /*
-        UsersRequestToDB users = new UsersRequestToDB();
-        users.someMethod(auth);*/
+    public String registerUser(@RequestBody RegisterRequest auth){
+        // Didn't test
+        IdeasRequestToDB objIdeas = new IdeasRequestToDB();
+        return String.valueOf(objIdeas.Registration(auth));
     }
 
+
     @RequestMapping(value = "/loginUser", method = RequestMethod.GET)
-    public LoginResponseObj getIdea(@RequestParam ("login") String login,@RequestParam ("password") String password) {
-        /*UsersRequestToDB users = new UsersRequestToDB();
-        return users.getSomeResponse(login,password);*/
-        return new LoginResponseObj();
+    public LoginResponseObj loginUser(@RequestParam ("login") String login, @RequestParam ("password") String password) {
+        // Unknown bug
+        LoginRequest loginRequest = new LoginRequest(login,password);
+        IdeasRequestToDB objIdeas = new IdeasRequestToDB();
+        return new IdeasRequestToDB().ReturnIDByLogin(loginRequest);
     }
 }
 
