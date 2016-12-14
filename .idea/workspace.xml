@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3589809-6547-4ae3-a272-de4cd6631f74" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/dao/RegisterResponse.java" />
+    <list default="true" id="e3589809-6547-4ae3-a272-de4cd6631f74" name="Default" comment="Fixed bugs.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/dao/LoginRequest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/config/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/config/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/controllerUnderService/IdeasRequestToDB.java" afterPath="$PROJECT_DIR$/src/main/java/controllerUnderService/IdeasRequestToDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/IdeaDAO.java" afterPath="$PROJECT_DIR$/src/main/java/dao/IdeaDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/dao/RegisterRequest.java" afterPath="$PROJECT_DIR$/src/main/java/dao/RegisterRequest.java" />
     </list>
     <ignored path="NotBadIdeaAPI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +27,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/config/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="447">
@@ -45,6 +41,18 @@
                 <element signature="method#postIdea#0;class#MainController#0" expanded="false" />
                 <element signature="method#registerUser#0;class#MainController#0" expanded="false" />
                 <element signature="method#loginUser#0;class#MainController#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginRequest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dao/LoginRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="e#437#438#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1051,7 +1059,7 @@
       <workItem from="1481648016286" duration="1957000" />
       <workItem from="1481651502532" duration="57000" />
       <workItem from="1481661749923" duration="6888000" />
-      <workItem from="1481742420831" duration="3544000" />
+      <workItem from="1481742420831" duration="3666000" />
     </task>
     <task id="LOCAL-00001" summary="Restructure server, adding 2 BL functions(post Idea and getIdeasbyID) (both are crutch and bicycles).">
       <created>1481279458799</created>
@@ -1067,7 +1075,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481668704137</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed bugs.">
+      <created>1481747047280</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1481747047280</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1103,7 +1118,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59859000" />
+    <option name="totallyTimeSpent" value="59981000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1177,7 +1192,8 @@
     <MESSAGE value="Restructure server, adding 2 BL functions(post Idea and getIdeasbyID) (both are crutch and bicycles)." />
     <MESSAGE value="Mock requests for login and register" />
     <MESSAGE value="Fix bugs, pleased to fix some stuff, extend functions, created test on login,  login is broken because of woman logic, registrator - not tested yet.  4now I'm too lazy to fix this shit. L8r I will fix it! May be... Also added some comments about bad code skills. Want some beer." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs, pleased to fix some stuff, extend functions, created test on login,  login is broken because of woman logic, registrator - not tested yet.  4now I'm too lazy to fix this shit. L8r I will fix it! May be... Also added some comments about bad code skills. Want some beer." />
+    <MESSAGE value="Fixed bugs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bugs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1537,16 +1553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/LoginRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#437#438#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/dao/IdeaDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-380">
@@ -1631,6 +1637,16 @@
             <element signature="method#postIdea#0;class#MainController#0" expanded="false" />
             <element signature="method#registerUser#0;class#MainController#0" expanded="false" />
             <element signature="method#loginUser#0;class#MainController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/LoginRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#437#438#0" expanded="true" />
           </folding>
         </state>
       </provider>
