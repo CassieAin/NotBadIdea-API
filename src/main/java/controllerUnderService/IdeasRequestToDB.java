@@ -3,7 +3,7 @@ package controllerUnderService;
 import dao.IdeaDAO;
 import dao.LoginRequest;
 import dao.LoginResponseObj;
-import dao.RegisterRequest;
+import dao.RegisterResponse;
 import service.DBConnection;
 
 import java.sql.PreparedStatement;
@@ -354,7 +354,7 @@ public class IdeasRequestToDB {
             psinsertquery.setString(2, idea.getDescription());
             psinsertquery.setInt(3, idea.getlikesAmount());
             psinsertquery.setInt(4, SelectUserIDByLogin(idea.getAuthor()));
-            psinsertquery.setString(5, idea.getDateTime());
+            psinsertquery.setString(5, idea.getDatetime());
             psinsertquery.setString(6, idea.getPhoto());
             psinsertquery.setInt(7, getCategoryID(idea.getCategory()));
             psinsertquery.executeUpdate();
@@ -375,21 +375,26 @@ public class IdeasRequestToDB {
         try
         {
             String selectusersquery =   "SELECT     `users`.`usPK`, " +
-                                        "FROM       `ideaservice`.`users` " +
-                                        "WHERE      `users`.`login` = '"+obj.getLogin()+"' " +
-                                        "            AND `users`.`password` = '"+obj.getPassword()+"';";
+                                        "           `users`.`login`, " +
+                                        "           `users`.`password` " +
+                                        "FROM       `ideaservice`.`users`;";
+
             PreparedStatement psquery = null;
             psquery = dbConnection.getConnection().prepareStatement(selectusersquery);
-            psquery.setString(1, obj.getLogin());
-            psquery.setString(2, obj.getPassword());
             ResultSet rsuser = null;
             rsuser = psquery.executeQuery();
-            LoginResponseObj loginresponseobj;
-            loginresponseobj =  new LoginResponseObj(-1);
+            int id = -1;
+            // Bicycle here because of some JDBC troubles (shit)
             if (rsuser != null)
-                if(rsuser.next())
-                    loginresponseobj = new LoginResponseObj(rsuser.getInt("usPK"));
-            return loginresponseobj;
+                while(rsuser.next()) {
+                    String logintemp = rsuser.getString("login");
+                    String passwordtemp = rsuser.getString("password");
+                    if (logintemp.equals(obj.getLogin()) && passwordtemp.equals(obj.getPassword())) {
+                        id = rsuser.getInt("usPK");
+                        break;
+                    }
+                }
+            return new LoginResponseObj(id);
         }
         catch (SQLException e) {
             dbConnection.CloseConnection();
@@ -397,7 +402,7 @@ public class IdeasRequestToDB {
         }
     }
 
-    public boolean Registration(RegisterRequest obj)
+    public boolean Registration(RegisterResponse obj)
     {
         DBConnection dbConnection;
         dbConnection = new DBConnection();

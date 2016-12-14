@@ -51,7 +51,7 @@ public class IdeaDAO {
     }
 
 
-    public String getDateTime()
+    public String getDatetime()
     {
         return datetime;
     }

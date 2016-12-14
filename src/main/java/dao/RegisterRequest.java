@@ -1,42 +1,21 @@
 package dao;
 
 /**
- * Created by user on 13.12.2016.
- * Nikolia 13/12/2016: HERE THO? COME ON. Initialization constructor and getters r necessary
+ * Created by Nikolia on 12/14/2016.
  */
 public class RegisterRequest {
-    String login;
-    String password;
-    String email;
-    String name;
-    String surname;
 
-    public RegisterRequest(String login, String password, String email, String name, String surname)
+    String request;
+
+    public RegisterRequest()
+    {}
+
+    public RegisterRequest(String request)
     {
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
+        this.request=request;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
+    public String getRequest() {
+        return request;
     }
 }
